@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+
+@theme {
+  /* Definir la paleta de color beige */
+  --color-beige-50: #fdf8f6;
+  --color-beige-100: #f2e8e5;
+  --color-beige-200: #eaddd7;
+  --color-beige-300: #e0cec7;  /* ← Este es el que necesitas */
+  --color-beige-400: #d2bab0;
+  --color-beige-500: #bfa094;
+  --color-beige-600: #a18072;
+  --color-beige-700: #977669;
+  --color-beige-800: #846358;
+  --color-beige-900: #43302b;
+
+  /* Colores adicionales si los necesitas */
+  --color-cielo-100: #e0f2fe;
+  --color-cielo-200: #bae6fd;
+  --color-cielo-300: #7dd3fc;
+  /* ... etc */
+}
+
+
+/* Tus estilos globales */
+body {
+  background-color: var(--color-beige-50);
+  color: #333;
+}
