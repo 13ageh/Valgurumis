@@ -1,36 +1,19 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🧸 Valgurumis – Sitio web de muñecos tejidos
 
-## Getting Started
+## Descripción
+ ¡Bienvenide al mundo de los Brocherets! Este repositorio es el hogar digital de unos muñecos muy especiales: tejidos con hilo y mucho cariño, listos para convertirse en tu broche, llavero o compañero de bolsillo. Aquí encontrarás el código de nuestro sitio web, donde mostramos cada creación y aceptamos pedidos personalizados.
 
-First, run the development server:
+## Características
+- Catálogo visual de modelos disponibles.
+- Sistema de encargos personalizados (color, tamaño, accesorios).
+##- Blog con tips para cuidar tus tejidos.
+##- Integración con WhatsApp para pedidos rápidos.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Tecnologías usadas
+- Next.js, Postgresql
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Cómo ver el sitio
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Contacto
