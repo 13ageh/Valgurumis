@@ -1,4 +1,5 @@
 import { query } from '@/lib/db';
+import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
@@ -9,10 +10,10 @@ export async function GET() {
       ORDER BY p.created_at DESC
     `);
 
-    return Response.json({ success: true, productos: rows });
+    return NextResponse.json({ success: true, productos: rows });
   } catch (error) {
     console.error('Error:', error);
-    return Response.json(
+    return NextResponse.json(
       { success: false, error: error.message },
       { status: 500 }
     );
@@ -31,7 +32,7 @@ export async function POST(request) {
 
     // Validar campos requeridos
     if (!nombre || !precio) {
-      return Response.json(
+      return NextResponse.json(
         { success: false, error: 'Nombre y precio son requeridos' },
         { status: 400 }
       );
@@ -49,16 +50,16 @@ export async function POST(request) {
       ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, true)
       RETURNING *
     `, [
-      nombre, finalSlug, descripcion_corta, descripcion_larga,
-      precio, precio_oferta, imagen_principal, imagenes_adicionales,
-      categoria_id, stock_actual || 0, stock_minimo || 5, material,
+      nombre, finalSlug, descripcion_corta || '', descripcion_larga || '',
+      precio, precio_oferta || null, imagen_principal || null, imagenes_adicionales || null,
+      categoria_id || null, stock_actual || 0, stock_minimo || 5, material || null,
       tiempo_elaboracion_dias || 7, destacado || false
     ]);
 
-    return Response.json({ success: true, producto: rows[0] });
+    return NextResponse.json({ success: true, producto: rows[0] });
   } catch (error) {
     console.error('Error al crear producto:', error);
-    return Response.json(
+    return NextResponse.json(
       { success: false, error: error.message },
       { status: 500 }
     );
