@@ -1,10 +1,12 @@
 'use client';
 
+import { Suspense } from 'react';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
-export default function AdminPedidos() {
+// Componente interno que usa useSearchParams
+function PedidosContent() {
   const [pedidos, setPedidos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filtroEstado, setFiltroEstado] = useState('');
@@ -116,6 +118,7 @@ export default function AdminPedidos() {
   );
 }
 
+// Componente auxiliar para el badge de estado
 function EstadoBadge({ estado }) {
   const config = {
     pendiente: { bg: 'bg-yellow-100', text: 'text-yellow-800', label: 'Pendiente' },
@@ -130,5 +133,14 @@ function EstadoBadge({ estado }) {
     <span className={`px-2 py-1 rounded-full text-xs font-medium ${style.bg} ${style.text}`}>
       {style.label}
     </span>
+  );
+}
+
+// Componente principal con Suspense
+export default function AdminPedidos() {
+  return (
+    <Suspense fallback={<div className="text-center py-10">Cargando...</div>}>
+      <PedidosContent />
+    </Suspense>
   );
 }
