@@ -40,7 +40,7 @@ export default function EditarProductoPage() {
           precio: data.producto.precio || '',
           descripcion_corta: data.producto.descripcion_corta || '',
           descripcion_larga: data.producto.descripcion_larga || '',
-          imagen_principal: data.producto.imagen_principal || '',
+          imagen: data.producto.imagen_principal || '',
           stock: data.producto.stock || '',
           destacado: data.producto.destacado || false,
           activo: data.producto.activo !== false

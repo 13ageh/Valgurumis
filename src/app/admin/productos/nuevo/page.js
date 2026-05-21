@@ -60,7 +60,7 @@ export default function NuevoProductoPage() {
         precio: parseFloat(formData.precio),
         descripcion_corta: formData.descripcion_corta,
         descripcion_larga: formData.descripcion_larga,
-        imagen_principal: formData.imagen_principal || '/img/producto-default.jpg',
+        imagen: formData.imagen_principal || '/img/producto-default.jpg',
         imagenes_extra: formData.imagenes_extra ? formData.imagenes_extra.split(',').map(img => img.trim()) : [],
         categoria_id: formData.categoria_id ? parseInt(formData.categoria_id) : null,
         stock_actual: parseInt(formData.stock_actual) || 0,
@@ -194,7 +194,7 @@ export default function NuevoProductoPage() {
               <input
                 type="text"
                 name="imagen_principal"
-                value={formData.imagen_principal}
+                value={formData.imagen}
                 onChange={handleChange}
                 className="w-full border rounded-lg p-2"
                 placeholder="/img/producto.jpg"

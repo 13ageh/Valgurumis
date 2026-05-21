@@ -1,7 +1,6 @@
 import { query } from '@/lib/db';
 import { NextResponse } from 'next/server';
 
-// Obtener un producto por ID
 export async function GET(request, { params }) {
   try {
     const { id } = await params;
@@ -24,16 +23,14 @@ export async function GET(request, { params }) {
   }
 }
 
-// Actualizar un producto
 export async function PUT(request, { params }) {
   try {
     const { id } = await params;
     const body = await request.json();
     
-    // ✅ CAMBIADO: stock_actual → stock (coincide con tu BD)
     const {
       nombre, slug, descripcion_corta, descripcion_larga,
-      precio, precio_oferta, imagen_principal, imagenes_adicionales,
+      precio, precio_oferta, imagen, imagenes_adicionales,  // ✅ imagen (no imagen_principal)
       categoria_id, stock, stock_minimo, material,
       tiempo_elaboracion_dias, destacado, activo
     } = body;
@@ -46,10 +43,10 @@ export async function PUT(request, { params }) {
         descripcion_larga = COALESCE($4, descripcion_larga),
         precio = COALESCE($5, precio),
         precio_oferta = COALESCE($6, precio_oferta),
-        imagen_principal = COALESCE($7, imagen_principal),
+        imagen = COALESCE($7, imagen),                    // ✅ imagen
         imagenes_adicionales = COALESCE($8, imagenes_adicionales),
         categoria_id = COALESCE($9, categoria_id),
-        stock = COALESCE($10, stock),           -- ✅ CAMBIADO: stock_actual → stock
+        stock = COALESCE($10, stock),
         stock_minimo = COALESCE($11, stock_minimo),
         material = COALESCE($12, material),
         tiempo_elaboracion_dias = COALESCE($13, tiempo_elaboracion_dias),
@@ -60,8 +57,8 @@ export async function PUT(request, { params }) {
       RETURNING *
     `, [
       nombre, slug, descripcion_corta, descripcion_larga,
-      precio, precio_oferta, imagen_principal, imagenes_adicionales,
-      categoria_id, stock, stock_minimo, material,    // ✅ CAMBIADO: stock_actual → stock
+      precio, precio_oferta, imagen, imagenes_adicionales,
+      categoria_id, stock, stock_minimo, material,
       tiempo_elaboracion_dias, destacado, activo, id
     ]);
 
@@ -82,7 +79,6 @@ export async function PUT(request, { params }) {
   }
 }
 
-// Eliminar un producto
 export async function DELETE(request, { params }) {
   try {
     const { id } = await params;
