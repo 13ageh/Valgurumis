@@ -1,4 +1,5 @@
 import { query } from '@/lib/db';
+import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
@@ -31,7 +32,7 @@ export async function GET() {
       'SELECT COUNT(*) FROM productos WHERE stock_actual < stock_minimo AND activo = true'
     );
 
-    return Response.json({
+    return NextResponse.json({
       success: true,
       stats: {
         totalProductos: parseInt(totalProductos[0].count),
@@ -43,7 +44,7 @@ export async function GET() {
     });
   } catch (error) {
     console.error('Error en stats:', error);
-    return Response.json(
+    return NextResponse.json(
       { success: false, error: error.message },
       { status: 500 }
     );
