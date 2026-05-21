@@ -30,6 +30,15 @@ export async function getProductos() {
   return result.rows;
 }
 
+// Agrega esta función después de getProductos
+export async function getProductoById(id) {
+  const result = await pool.query(
+    'SELECT * FROM productos WHERE id = $1',
+    [id]
+  );
+  return result.rows[0];
+}
+
 export async function getProductosPorCategoria(categoriaSlug) {
   const result = await pool.query(`
     SELECT p.* FROM productos p
