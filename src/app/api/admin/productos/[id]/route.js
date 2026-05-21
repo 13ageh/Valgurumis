@@ -43,7 +43,7 @@ export async function PUT(request, { params }) {
         descripcion_larga = COALESCE($4, descripcion_larga),
         precio = COALESCE($5, precio),
         precio_oferta = COALESCE($6, precio_oferta),
-        imagen = COALESCE($7, imagen),                    // ✅ imagen
+        imagen = COALESCE($7, imagen),
         imagenes_adicionales = COALESCE($8, imagenes_adicionales),
         categoria_id = COALESCE($9, categoria_id),
         stock = COALESCE($10, stock),
