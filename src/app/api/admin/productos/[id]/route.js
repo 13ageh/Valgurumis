@@ -1,35 +1,40 @@
 import { query } from '@/lib/db';
+import { NextResponse } from 'next/server';
 
+// Obtener un producto por ID
 export async function GET(request, { params }) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const { rows } = await query('SELECT * FROM productos WHERE id = $1', [id]);
 
     if (rows.length === 0) {
-      return Response.json(
+      return NextResponse.json(
         { success: false, error: 'Producto no encontrado' },
         { status: 404 }
       );
     }
 
-    return Response.json({ success: true, producto: rows[0] });
+    return NextResponse.json({ success: true, producto: rows[0] });
   } catch (error) {
     console.error('Error:', error);
-    return Response.json(
+    return NextResponse.json(
       { success: false, error: error.message },
       { status: 500 }
     );
   }
 }
 
+// Actualizar un producto
 export async function PUT(request, { params }) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const body = await request.json();
+    
+    // ✅ CAMBIADO: stock_actual → stock (coincide con tu BD)
     const {
       nombre, slug, descripcion_corta, descripcion_larga,
       precio, precio_oferta, imagen_principal, imagenes_adicionales,
-      categoria_id, stock_actual, stock_minimo, material,
+      categoria_id, stock, stock_minimo, material,
       tiempo_elaboracion_dias, destacado, activo
     } = body;
 
@@ -44,7 +49,7 @@ export async function PUT(request, { params }) {
         imagen_principal = COALESCE($7, imagen_principal),
         imagenes_adicionales = COALESCE($8, imagenes_adicionales),
         categoria_id = COALESCE($9, categoria_id),
-        stock_actual = COALESCE($10, stock_actual),
+        stock = COALESCE($10, stock),           -- ✅ CAMBIADO: stock_actual → stock
         stock_minimo = COALESCE($11, stock_minimo),
         material = COALESCE($12, material),
         tiempo_elaboracion_dias = COALESCE($13, tiempo_elaboracion_dias),
@@ -56,35 +61,36 @@ export async function PUT(request, { params }) {
     `, [
       nombre, slug, descripcion_corta, descripcion_larga,
       precio, precio_oferta, imagen_principal, imagenes_adicionales,
-      categoria_id, stock_actual, stock_minimo, material,
+      categoria_id, stock, stock_minimo, material,    // ✅ CAMBIADO: stock_actual → stock
       tiempo_elaboracion_dias, destacado, activo, id
     ]);
 
     if (rows.length === 0) {
-      return Response.json(
+      return NextResponse.json(
         { success: false, error: 'Producto no encontrado' },
         { status: 404 }
       );
     }
 
-    return Response.json({ success: true, producto: rows[0] });
+    return NextResponse.json({ success: true, producto: rows[0] });
   } catch (error) {
     console.error('Error al actualizar:', error);
-    return Response.json(
+    return NextResponse.json(
       { success: false, error: error.message },
       { status: 500 }
     );
   }
 }
 
+// Eliminar un producto
 export async function DELETE(request, { params }) {
   try {
-    const { id } = params;
+    const { id } = await params;
     await query('DELETE FROM productos WHERE id = $1', [id]);
-    return Response.json({ success: true });
+    return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Error al eliminar:', error);
-    return Response.json(
+    return NextResponse.json(
       { success: false, error: error.message },
       { status: 500 }
     );
