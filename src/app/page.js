@@ -6,9 +6,9 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 const productosDestacados = [
-  { id: 1, nombre: "Conejito Tejido", precio: 25, imagen_principal: "/img/checo.jpeg", descripcion_corta: "Suave y adorable" },
-  { id: 2, nombre: "Osito Amigurumi", precio: 30, imagen_principal: "/img/sepa.jpeg", descripcion_corta: "El compañero perfecto" },
-  { id: 3, nombre: "Llama de Peluche", precio: 35, imagen_principal: "/img/ceni.jpg", descripcion_corta: "Hecha con amor" },
+  { id: 1, nombre: "checo perez", precio: 300, imagen_principal: "/img/checo.jpeg", descripcion_corta: "Para los amantes de las carreras" },
+  { id: 2, nombre: "VI", precio: 220, imagen_principal: "/img/sepa.jpeg", descripcion_corta: "Tu personaje favorito" },
+  { id: 3, nombre: "Dinosaurio", precio: 200, imagen_principal: "/img/dino.jpeg", descripcion_corta: "El compañero perfecto" },
 ];
 
 export default function Home() {

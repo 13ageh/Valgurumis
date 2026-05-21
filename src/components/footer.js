@@ -25,9 +25,9 @@ function Footer() {
           <div>
             <h4 className="font-semibold text-white mb-4">Contacto</h4>
             <ul className="space-y-2 text-gray-400">
-              <li>📧 hola@valgurumis.com</li>
-              <li>📱 +52 55 1234 5678</li>
-              <li>📍 Ciudad de México</li>
+              <li>📧 ventas@valgurumis.com</li>
+              <li>📱 +52 33 2217 8889</li>
+              <li>📍 Guadalajara</li>
             </ul>
           </div>
           <div>
